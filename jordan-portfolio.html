@@ -1,1 +1,403 @@
-placeholder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Jordan Lee — Premier Music Producer crafting chart-ready beats and sonic experiences for independent artists and labels."/>
+<meta property="og:title" content="Jordan Lee | Music Producer"/>
+<meta property="og:description" content="Beats. Mixes. Masters. Built to hit."/>
+<title>Jordan Lee | Music Producer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--c1:#7C3AED;--c2:#EC4899;--bg:#0A0A0F;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--text:#E2E8F0;--muted:#94A3B8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;cursor:none;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
+
+/* CURSOR */
+#cursor-dot{width:8px;height:8px;background:var(--c1);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .1s}
+#cursor-ring{width:36px;height:36px;border:1.5px solid var(--c1);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:transform .12s,opacity .2s;opacity:.6}
+
+/* GRAIN */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:256px}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;border:none;padding:10px 24px;border-radius:50px;font-size:14px;font-weight:600;cursor:none;transition:opacity .2s,transform .2s}
+.nav-cta:hover{opacity:.85;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(10,10,15,.97);backdrop-filter:blur(20px);padding:24px 40px;border-bottom:1px solid var(--border);z-index:99}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;color:var(--muted);text-decoration:none;padding:12px 0;font-size:16px;border-bottom:1px solid var(--border)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 40px 80px;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(124,58,237,.15) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(236,72,153,.1) 0%,transparent 60%);animation:heroPulse 8s ease-in-out infinite alternate}
+@keyframes heroPulse{0%{transform:scale(1)}100%{transform:scale(1.05)}}
+.hero-content{position:relative;z-index:2;max-width:860px}
+.hero-badge{display:inline-block;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#A78BFA;padding:6px 18px;border-radius:50px;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:28px}
+.hero-name{font-size:clamp(52px,10vw,110px);font-weight:800;line-height:1;letter-spacing:-3px;background:linear-gradient(135deg,#fff 30%,var(--c1) 60%,var(--c2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 4s ease infinite}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero-tagline{font-size:clamp(18px,3vw,26px);color:var(--muted);margin:24px 0 40px;font-weight:400;line-height:1.5;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-tagline span{color:#fff;font-weight:600}
+.btn-primary{display:inline-block;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;text-decoration:none;padding:16px 44px;border-radius:50px;font-size:16px;font-weight:700;transition:transform .2s,box-shadow .2s;box-shadow:0 0 40px rgba(124,58,237,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 60px rgba(124,58,237,.5)}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:12px;letter-spacing:1px}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--c1),transparent);animation:scrollDown 1.5s ease-in-out infinite}
+@keyframes scrollDown{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.4;transform:scaleY(.5)}}
+
+/* SECTIONS */
+section{padding:100px 40px;max-width:1200px;margin:0 auto}
+.section-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--c1);margin-bottom:16px}
+.section-title{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:20px}
+.section-sub{color:var(--muted);font-size:17px;max-width:560px;line-height:1.7}
+
+/* GLASS CARD */
+.glass{background:var(--surface);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(12px);transition:transform .3s,border-color .3s,box-shadow .3s}
+.glass:hover{transform:translateY(-6px);border-color:rgba(124,58,237,.3);box-shadow:0 20px 60px rgba(124,58,237,.1)}
+
+/* ABOUT */
+#about .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:60px}
+.about-bio{font-size:18px;line-height:1.8;color:var(--muted)}
+.about-bio strong{color:#fff}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-card{padding:28px 24px;text-align:center}
+.stat-num{font-size:42px;font-weight:800;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.stat-label{color:var(--muted);font-size:13px;margin-top:6px;font-weight:500}
+
+/* SERVICES */
+#services .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:60px}
+.service-card{padding:36px 32px}
+.service-icon{font-size:36px;margin-bottom:20px;display:block}
+.service-card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+.service-card p{color:var(--muted);font-size:15px;line-height:1.7}
+
+/* WHY */
+#why{background:linear-gradient(180deg,transparent,rgba(124,58,237,.04),transparent)}
+#why .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:60px}
+.why-card{padding:36px 32px;display:flex;gap:20px;align-items:flex-start}
+.why-icon{font-size:28px;flex-shrink:0;background:rgba(124,58,237,.1);width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.why-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.why-card p{color:var(--muted);font-size:14px;line-height:1.7}
+
+/* PROCESS */
+#process .process-list{margin-top:60px;display:flex;flex-direction:column;gap:0}
+.process-step{display:grid;grid-template-columns:80px 1fr;gap:32px;padding:40px 0;border-bottom:1px solid var(--border);position:relative}
+.process-step:last-child{border-bottom:none}
+.step-num{font-size:60px;font-weight:800;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;opacity:.4}
+.step-content h3{font-size:22px;font-weight:700;margin-bottom:10px}
+.step-content p{color:var(--muted);font-size:15px;line-height:1.7}
+
+/* TESTIMONIALS */
+#testimonials .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:60px}
+.testi-card{padding:36px 32px}
+.testi-stars{color:#F59E0B;font-size:16px;margin-bottom:16px;letter-spacing:2px}
+.testi-quote{font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:24px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff}
+.testi-name{font-size:14px;font-weight:700}
+.testi-role{font-size:12px;color:var(--muted)}
+
+/* FAQ */
+#faq .faq-list{margin-top:60px;display:flex;flex-direction:column;gap:12px}
+.faq-item{border-radius:16px;overflow:hidden}
+.faq-q{width:100%;background:var(--surface);border:1px solid var(--border);color:#fff;padding:22px 28px;font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;text-align:left;cursor:none;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.faq-q:hover{background:rgba(255,255,255,.06)}
+.faq-q.open{border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.05)}
+.faq-arrow{transition:transform .3s;font-size:20px;color:var(--c1)}
+.faq-q.open .faq-arrow{transform:rotate(45deg)}
+.faq-a{background:rgba(124,58,237,.04);border:1px solid rgba(124,58,237,.1);border-top:none;padding:0 28px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-a.open{max-height:300px;padding:20px 28px}
+.faq-a p{color:var(--muted);font-size:15px;line-height:1.8}
+
+/* CTA SECTION */
+#cta-section{text-align:center;padding:120px 40px}
+.cta-inner{max-width:700px;margin:0 auto}
+.cta-glow{position:relative;display:inline-block}
+.cta-glow::before{content:'';position:absolute;inset:-60px;background:radial-gradient(circle,rgba(124,58,237,.2),transparent 70%);pointer-events:none}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:48px 40px;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.footer-name{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.footer-tag{color:var(--muted);font-size:13px;margin-top:4px}
+.footer-credit{color:var(--muted);font-size:13px;text-align:right}
+.footer-credit a{color:var(--c1);text-decoration:none}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  #hero{padding:100px 24px 60px}
+  section{padding:70px 24px}
+  #about .about-grid{grid-template-columns:1fr;gap:40px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .process-step{grid-template-columns:50px 1fr;gap:20px}
+  .step-num{font-size:40px}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:40px 24px}
+  .footer-credit{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <div class="nav-logo">Jordan</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.open('https://bassment7.gumroad.com/l/xkukwz','_blank')">Book a Session</button>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#process" onclick="closeMenu()">Process</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="https://bassment7.gumroad.com/l/xkukwz" target="_blank">Book a Session</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🎧 Music Producer</div>
+    <h1 class="hero-name">Jordan Lee</h1>
+    <p class="hero-tagline">Turning <span>raw talent</span> into <span>chart-ready records</span> — beats built for artists who refuse to sound ordinary.</p>
+    <a href="https://bassment7.gumroad.com/l/xkukwz" target="_blank" class="btn-primary">Book a Session →</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title">Sonic Architecture for Serious Artists</h2>
+      <p class="about-bio"><strong>Jordan Lee</strong> is a Grammy-caliber music producer with a decade of experience sculpting sounds that move audiences and open doors. From underground rap to polished R&amp;B crossovers, Jordan works exclusively with <strong>independent artists and forward-thinking labels</strong> who demand both creative vision and commercial precision.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="glass stat-card"><span class="stat-num">200+</span><div class="stat-label">Projects Delivered</div></div>
+      <div class="glass stat-card"><span class="stat-num">10</span><div class="stat-label">Years Experience</div></div>
+      <div class="glass stat-card"><span class="stat-num">85+</span><div class="stat-label">Artists Worked With</div></div>
+      <div class="glass stat-card"><span class="stat-num">100%</span><div class="stat-label">Client Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">Services</div>
+  <h2 class="section-title">What I Bring to Your Sessions</h2>
+  <p class="section-sub">Every service is built around one goal — making your music impossible to ignore.</p>
+  <div class="services-grid">
+    <div class="glass service-card fade-up">
+      <span class="service-icon">🎹</span>
+      <h3>Beat Production</h3>
+      <p>Custom-crafted instrumentals built around your sound, your story, and your target audience. No templates — every beat is engineered from scratch to fit your artistic identity.</p>
+    </div>
+    <div class="glass service-card fade-up">
+      <span class="service-icon">🎚️</span>
+      <h3>Mixing & Mastering</h3>
+      <p>Studio-quality mixing that balances every frequency and master delivery optimised for streaming platforms. Your record will translate on any speaker, anywhere in the world.</p>
+    </div>
+    <div class="glass service-card fade-up">
+      <span class="service-icon">🌊</span>
+      <h3>Sound Design</h3>
+      <p>Signature sounds, custom patches, and sonic textures that make your music instantly recognisable. Build an audio brand that fans connect with before a single bar drops.</p>
+    </div>
+    <div class="glass service-card fade-up">
+      <span class="service-icon">🚀</span>
+      <h3>Artist Development</h3>
+      <p>Strategic guidance on your sound direction, release strategy, and sonic branding. From demo to debut, Jordan helps independent artists build careers that last.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section-label">Why Jordan</div>
+  <h2 class="section-title">The Difference Is in the Details</h2>
+  <div class="why-grid">
+    <div class="glass why-card fade-up">
+      <div class="why-icon">🎯</div>
+      <div>
+        <h3>Genre-Fluid Expertise</h3>
+        <p>From trap to soul, Afrobeats to indie pop — Jordan moves fluidly across genres without losing the sonic integrity that makes each artist unique.</p>
+      </div>
+    </div>
+    <div class="glass why-card fade-up">
+      <div class="why-icon">⚡</div>
+      <div>
+        <h3>Fast Turnaround, No Compromises</h3>
+        <p>Industry-standard delivery timelines without cutting corners on quality. Your sessions stay on schedule so your releases hit when momentum demands it.</p>
+      </div>
+    </div>
+    <div class="glass why-card fade-up">
+      <div class="why-icon">🤝</div>
+      <div>
+        <h3>Artist-First Collaboration</h3>
+        <p>Your vision leads every session. Jordan's role is to amplify what you bring — not overwrite it. Expect a creative partner, not just a service provider.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-label">Process</div>
+  <h2 class="section-title">From Brief to Banger</h2>
+  <p class="section-sub">A clear, proven process that keeps creativity flowing and delivery on point.</p>
+  <div class="process-list">
+    <div class="process-step fade-up">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Brief & Vision Session</h3>
+        <p>We kick off with a deep creative brief — your references, influences, target audience, and goals. This session shapes every production decision that follows.</p>
+      </div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>Record & Produce</h3>
+        <p>Beats are built, sessions are recorded, and arrangements are crafted in real time. You're involved at every milestone — feedback loops are built into the process.</p>
+      </div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Mix, Master & Deliver</h3>
+        <p>Final mixes are polished and mastered to streaming standards. You receive all stems, WAV masters, and platform-ready files — ready to upload and go live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-label">Testimonials</div>
+  <h2 class="section-title">Artists Don't Lie</h2>
+  <div class="testi-grid">
+    <div class="glass testi-card fade-up">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Jordan took my rough ideas and turned them into a full project I'm genuinely proud of. The mix on my EP sounded better than tracks from artists with major label budgets."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">M</div>
+        <div><div class="testi-name">Marcus Okafor</div><div class="testi-role">Independent R&B Artist</div></div>
+      </div>
+    </div>
+    <div class="glass testi-card fade-up">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"The sound design work alone was worth every penny. My listeners kept asking what synth I was using — it was all Jordan. Nobody else sounds like this."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div><div class="testi-name">Sofia Reyes</div><div class="testi-role">Electronic / Afropop Artist</div></div>
+      </div>
+    </div>
+    <div class="glass testi-card fade-up">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"As a label A&R, I've worked with dozens of producers. Jordan is in a different league — professional, fast, and the ear is just undeniable. We keep coming back."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">D</div>
+        <div><div class="testi-name">Damien Clarke</div><div class="testi-role">A&R, Shift Records</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Common Questions</h2>
+  <div class="faq-list">
+    <div class="faq-item fade-up">
+      <button class="faq-q" onclick="toggleFaq(this)">Do I own the rights to beats you produce for me? <span class="faq-arrow">+</span></button>
+      <div class="faq-a"><p>Yes. All custom production comes with full exclusive rights transfer upon final payment. You own 100% of the master — Jordan retains no publishing stake unless explicitly negotiated for co-write credits.</p></div>
+    </div>
+    <div class="faq-item fade-up">
+      <button class="faq-q" onclick="toggleFaq(this)">How long does a typical project take? <span class="faq-arrow">+</span></button>
+      <div class="faq-a"><p>A single beat takes 3–5 days. A full EP production run typically spans 3–6 weeks depending on complexity and revision rounds. Mixing and mastering turnaround is 48–72 hours per track.</p></div>
+    </div>
+    <div class="faq-item fade-up">
+      <button class="faq-q" onclick="toggleFaq(this)">Can I be involved in the production process? <span class="faq-arrow">+</span></button>
+      <div class="faq-a"><p>Absolutely — in fact, collaboration is encouraged. Jordan works best with artists who have a clear vision. You'll get access to session previews and feedback checkpoints throughout the process.</p></div>
+    </div>
+    <div class="faq-item fade-up">
+      <button class="faq-q" onclick="toggleFaq(this)">What genres do you work in? <span class="faq-arrow">+</span></button>
+      <div class="faq-a"><p>Jordan works across Hip-Hop, R&B, Afrobeats, Electronic, Pop, and genre-blending projects. The approach always starts with your sound — not a preset formula.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-section">
+  <div class="cta-inner">
+    <div class="cta-glow">
+      <div class="section-label" style="text-align:center">Ready?</div>
+      <h2 class="section-title" style="text-align:center">Your Next Record Starts Here</h2>
+      <p class="section-sub" style="text-align:center;margin:0 auto 40px">Stop settling for generic production. Book a session with Jordan and build something that actually hits.</p>
+      <a href="https://bassment7.gumroad.com/l/xkukwz" target="_blank" class="btn-primary">Get Your Portfolio by The Bassment →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-name">Jordan Lee</div>
+    <div class="footer-tag">Music Producer</div>
+  </div>
+  <div class="footer-credit">Portfolio by <a href="https://bassment7.gumroad.com/l/xkukwz" target="_blank">The Bassment</a></div>
+</footer>
+
+<script>
+// CURSOR
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx-4}px,${my-4}px)`;});
+function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.transform=`translate(${rx-18}px,${ry-18}px)`;requestAnimationFrame(animRing);}
+animRing();
+
+// HAMBURGER
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+
+// FAQ
+function toggleFaq(btn){
+  const a=btn.nextElementSibling;
+  const isOpen=a.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(el=>{el.classList.remove('open');el.previousElementSibling.classList.remove('open');});
+  if(!isOpen){a.classList.add('open');btn.classList.add('open');}
+}
+
+// FADE UP
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});},{threshold:.15});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
